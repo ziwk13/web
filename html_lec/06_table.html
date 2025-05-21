@@ -87,6 +87,83 @@
     </tfoot>
    </table>
 
+   <!-- 행/열이 일정하지 않은 테이블 -->
+    <table border="5">
+      <tbody>
+        <tr>
+          <td>a</td>
+          <td>b</td>
+          <td>c</td>
+        </tr>
+        <tr>
+          <td>d</td>
+          <td>c</td>
+        </tr>
+        <tr>
+        <td>d</td>
+        <td>e</td>
+        </tr>
+        <tr>
+          <td>f</td>
+        </tr>
+      </tbodt>
+    </table>
+
+    <!-- 열 병합하기 -->
+         <table border="5">
+      <tbody>
+        <tr>
+          <td>a</td>
+          <td>b</td>
+          <td>c</td>
+        </tr>
+        <tr>
+          <td>d</td>
+          <td>c</td>
+          <td colspan="2"></td>
+        </tr>
+        <tr>
+        <td>d</td>
+        <td>e</td>
+        <td colspan="2"></td>
+        </tr>
+        <tr>
+          <td>f</td>
+          <td colspan="3"></td>
+        </tr>
+      </tbodt>
+    </table>
+
+    <!-- 행 병합 하기 -->
+         <table border="5">
+      <tbody>
+        <tr>
+          <td>a</td>
+          <td>b</td>
+          <td rowspan="4">c</td>
+        </tr>
+        <tr>
+          <td>d</td>
+          <td>c</td>
+        </tr>
+        <tr>
+        <td>d</td>
+        <td rowspan="2">e</td>
+        </tr>
+        <tr>
+          <td>f</td>
+        </tr>
+      </tbodt>
+    </table>
+
+    <!-- tbody 태그를 꼭 사용 해야 하는 이유 : 작성한 태그 구조와 렌더링된 태그 구조를 동일하게 맞추기 위해서 사용하는 것이 좋다. -->
+     <table border="1">
+      <tr>
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+      </tr>
+     </table>
 
 
 </body>
