@@ -16,11 +16,18 @@
 
     #content2 {
       font-family: "Gamja Flower", sans-serif;
-      font-size: 3em; 
+      font-size: 3em; /* px (픽셀), em (배수), rem (루트 배수)
       font-weight: 400;  /* 폰트 굵기 */
       font-style: italic;  /* 폰트 기울임 */
       font-variant: small-caps; /* 글꼴 변형 스타일 지정 : small-caps 소문자를 작은 대문자로 변환 */
-      font: 1.5em "Gamja Flower", sans-serif; /* 단축속성 size, family는 필수 */
+      line-height: 2; /* 행 간격 조정 */
+      font: 1.5em/2 "Gamja Flower", sans-serif; /* 단축속성 size, family는 필수 */
+    }
+    #content3 {
+      /* text-decoration: underline; */
+      text-align: center; /* 인라인은 적용이 안되고 블록 요소에만 적용 */
+      text-transform: capitalize;
+      text-shadow: 5px 5px 2px goldenrod; /* 그림자의 가로, 세로, 번짐, 색상 */
     }
 
   </style>
@@ -29,6 +36,6 @@
 
   <div id="content1">hello world</div>
   <div id="content2">hello world</div>
-  
+  <div id="content3">hello WORLD</div>
 </body>
 </html>
