@@ -34,6 +34,29 @@
             <input type="text" id="username">
           </label>
   -->
+
+  <form action="/login" method="post">
+    <table>
+    <tbody>
+    <tr>
+    <td><label for="uid">아이디</label></td>
+    <td><input type="text" name="uid" id="uid"></td><br>
+  </tr>
+  <tr>
+    <td><label for="pwd">비밀번호</label></td>
+    <td><input type="password" name="pwd" id="pwd"></td><br>
+    <tr>
+    </tbody>
+  </table>
+  <button type="submit">로그인</button>
+  </form>
+
+  <!-- 체크박스 -->
+   <form accept="/signup">
+    <input type="checkbox" name="agree" id="agree">
+    <label for="agree">본 약관에 동의 합니다.</label><br>
+    <button type="submit">가입</button>
+   </form>
   
 </body>
 </html>
