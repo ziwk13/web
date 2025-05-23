@@ -45,7 +45,7 @@
  </ul>
 
  <!-- 형제 선택자 : 형제 ~ 형제 -->
- <!-- 인접 선택자 : 형제 + 형제제 -->
+ <!-- 인접 선택자 : 형제 + 형제 -->
   <style>
     .asia ~ div {
       color: teal;
@@ -60,5 +60,119 @@
   <div>한국</div>
   <div>일본</div>
   <div>중국</div>
+
+  <!-- 
+  속성 선택자 
+  1. 요소[속성]    : 해당 속성을 가진 모든 요소
+  2. 요소[속성=값] : 속성=값인 요소
+  3. 요소[속성^=값]: 속성이 값으로 시작 하는 요소
+  4. 요소[속성$=값]: 속성이 값으로 끝나는 요소
+  5. 요소[속성*=값]: 속성이 값을 포함하는 요소
+  -->
+  <style>
+    input[type] {
+      color: orange;
+    }
+    input[type=password] {
+      color: red;
+    }
+  </style>
+  <input type="text">
+  <input type="password">
+  <br>
+
+  <!-- 생각해 보기 : 첫 번째 항목을 제외한 나머지 항목을 선택하기 -->
+   <style>
+    ol > li + li {
+      color: red;
+    }
+   </style>
+  <ol>
+    <li>첫 번째 항목</li>
+    <li>두 번째 항목</li>
+    <li>세 번째 항목</li>
+    <li>네 번째 항목</li>
+  </ol>
+  <br>
+
+  <!--
+  가상 클래스(Pseudo-class)
+
+  1. 요소의 상태(마우스 오버, 포커스, 체크 등) 또는 요소의 구조(첫 번째 자식, 홀수 번째 등)에 따라 스타일을 적용하는 선택자
+  2. 표기법
+    1) 콜론 한 개(:)를 사용합니다.
+    2) 예시) a:hover, input[type=text]:focus, li:first-child 등
+  -->
+    <style>
+      section > a {
+        text-decoration: none;
+      }
+      /* hover를 위에 두고 action를 아래에 둔다. */
+      section > a:hover { /* 마우스를 가져다 대는 동안 */
+        color: pink;
+      }
+      section > a:active { /* 마우스를 누르는 동안 */
+        color: orange;
+      }
+      section > input[type=radio]:checked {
+        color: greenyellow;
+      }
+      section > input[type=radio]:checked + label {
+        color: red;
+        text-decoration: underline;
+      }
+    </style>
+    <section>
+      <a href="http://www.naver.com">네이버</a>
+      <br><br>
+      <input type="radio" name="gender" value="man" id="man">
+      <label for="man">남자</label>
+      <input type="radio" name="gender" value="woman" id="woman">
+      <label for="woman">여자</label>
+      <input type="radio" name="gender" value="none" id="none" checked>
+      <label for="none">선택안함</label>
+    </section>
+    <style>
+      /* article의 2번째 자식이 p 태그이면 적용 (모든 자식들의 순서를 기준으로 선택) */
+      article > p:nth-child(2) {
+        color: red;
+      }
+      /* article의 자식 p 태그 중 2번째 요소에 적용 된다. (타입이 일치 하는 자식들끼리만 순서를 적용) */
+      article > p:nth-of-type(2) {
+        color: tomato;
+      }
+    </style>
+    <article>
+      <h1>Title</h1>
+      <p>첫 번째 문단 p</p>
+      <span>문단 사이</span>
+      <p>두 번째 문단 p</p>
+    </article>
+<br><br>
+
+<!--
+  가상 요소(Pseodo-element)
+
+  1. 존재하지 않는 요소 또는 요소의 일부에 스타일을 적용하는 선택자
+  2. 표기법
+    1) 콜론 두 개(::)를 사용 한다.
+    2) 예시) div::before, p:first-letter 등
+-->
+<style>
+  dl > dt::after {
+    content: '😀';
+  }
+  dl > dd::first-letter {
+    color: red;
+  }
+</style>
+<dl>
+  <dt>HTML</dt>
+  <dd>Hyper Text Markup Language</dd>
+  <dt>CSS</dt>
+  <dd>Cascading Style Sheet</dd>
+</dl>
+  
+
 </body>
 </html>
