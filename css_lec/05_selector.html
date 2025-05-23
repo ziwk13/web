@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>selector</title>
+  <style>
+    /* fontawesome facebook */
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css');
+    /* fontawesom youtube */
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/lite-youtube-embed/0.3.3/lite-yt-embed.js');
+    /* fontawesom instar */
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/jquery-instagram/0.3.1/instagram.min.js');
+  </style>
+  
+</head>
+<body>
+
+<!-- 자식 선택자 : 부모 > 자식 -->
+<!-- 후손 선택자 : 부모 (공백) 후손 -->
+ <style>
+  .brand > li {
+    color: red;
+  }
+  .brand  a {
+    color: black;
+  }
+ </style>
+ <ul class="brand">
+  <li>
+    <a href="http://www.facebook.com" >
+      <i class="fa-brands fa-facebook"></i>
+    </a>
+  </li>
+    <li>
+    <a href="http://www.youtube.com">
+      <i class="fa-brands fa-youtube"></i>
+    </a>
+  </li>
+    <li>
+    <a href="http://www.instargram.com">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+  </li>
+ </ul>
+
+ <!-- 형제 선택자 : 형제 ~ 형제 -->
+ <!-- 인접 선택자 : 형제 + 형제제 -->
+  <style>
+    .asia ~ div {
+      color: teal;
+      font-size: 2em;
+    }
+    .asia + div {
+      color: red;
+      font-size: 5em;
+    }
+  </style>
+  <h4 class="asia">아시아</h4>
+  <div>한국</div>
+  <div>일본</div>
+  <div>중국</div>
+</body>
+</html>
