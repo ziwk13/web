@@ -53,8 +53,13 @@
   1) 문자(ISO-8859-1 또는 Unicode), 숫자, 밑줄(_), 달러($) 기호 사용 가능합니다.
   2) 첫 글자는 숫자일 수 없습니다.
   3) 대소문자를 구분합니다.
-  4) Camel Case 방식의 이름 규칙을 사용합니다. (myHome, myMoney, ...)
+  4) Camel Case 방식의 이름 규칙(Naming Convension)을 사용합니다. (myHome, myMoney, ...)
 
+  * Naming Convesion 
+    1) PascalCase
+    2) camelCase
+    3) snake_case
+    4) Dash-case, Kebab-case
 
 5. Template literals(Template strings)
   1) 백틱(``, backtick)으로 묶은 문자열을 의미합니다.
@@ -73,6 +78,110 @@
   4) var 키워드로 선언된 변수는 코드 어디에 존재하든 가장 먼저 처리되는 것으로 이해할 수 있습니다.
   5) 변수 선언과 초기화가 동시에 진행되는 경우 변수 선언만 분리해서 먼저 처리합니다.
 -->
+
+<script>
+
+// 코드 블록 구성하기: { ... }
+{
+  // 변수 a 선언: undefined 값을 가짐
+  var a;
+  console.log(a);
+
+  // 변수 a 재선언: var 선언만 가능
+  var a;
+  console.log(a, typeof a);
+
+  //number 할당
+  a = 10;
+  console.log(a, typeof a);
+
+  // string 재할당
+  a = "hello world";
+  console.log(a, typeof a);
+}
+// var a는 전역 스코프를 가지므로 코드 블록 외부에서도 확인 가능
+console.log('코드블록 외부', a, typeof a);
+
+</script>
+
+<script>
+
+  // 코드 블록({})
+  {
+    // 변수 x는 undefined 값을 가진다.
+    let x;
+    console.log(x);
+
+    // 변수 x 재선언: 불가능
+    // let x;
+
+    // number 할당
+    x = 2.0;
+    console.log(x, typeof x);
+  }
+
+  // 코드 블록을 벗어난 경우 접근 불가능
+  // console.log(x); // Uncaught 
+</script>
+
+<script>
+
+  // 코드 블록
+  {
+
+    // const 변수는 반드시 선언과 할당을 모두 해야 함 (초기값이 반드시 필요한다.)
+    const y = 'hello world';
+    console.log(y);
+
+    // const 변수 재선언: 불가능
+
+    // const 변수값 재 할당: 불가능
+    // y = 10; //Uncaught TypeError: Assignment to constant variable.
+  
+  }
+
+  // 코드 블록을 벗어난 경우 접근 불가능
+  // console.log(y); is not defined
+
+</script>
+
+<script>
+
+ // Template literals를 이용한 다중 라인 처리
+ const iconArt = `^     ^
+     
+  -- `;
+  console.log(iconArt);
+
+// Template literals를 이용한 문자열 보간(표현식 보간: 문자열에 변수 포함하는 방법)
+const year = 2025;
+const month = 5;
+const day = 27;
+console.log(`오늘은 ${year}년 ${month}월 ${day}일 입니다.`);
+
+</script>
+
+<script>
+
+  money = 50000;
+  console.log(money);
+  var money;  //--------- var 변수 선언은 호이스팅에 의해서 항상 먼저 처리 된다.
+
+  console.log(car);
+  var car = '랜드로버 디펜더';  //------- 변수 선언만 호이스팅 된다. 할당은 호이스팅 되지 않는다.
+
+</script>
+
+<script>
+
+  // 연습) 본인 이름, 나이, 성별을 변수에 저장하고 아래와 같이 출력 한다.
+  // 나는 또치라고해. 남자이구 18살이야.
+
+  let name = `경진`, age = 30, gender = `남자`;
+
+  console.log(`나는 ${name}이라고 해. ${gender}이구 ${age}살이야.`);
+  
+</script>
 
 </body>
 </html>
