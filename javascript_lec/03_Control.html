@@ -86,5 +86,47 @@
   2) while 문이나 for 문 같은 반복문을 종료할 때도 break 문을 사용합니다.
 -->
 
+
+<script>
+
+  // if문을 이용한 성적 처리
+  let score = prompt("점수를 입력하세요(0~100).");
+   console.log(score, typeof score) //----- prompt 대화 상자로 입력한 모든 값은 string 타입 이다.
+  let result;
+
+  if(score >= 90) { 
+    result = "수";
+    }
+  else if(score >= 80) { 
+    result = "우"; 
+    }
+  else if(score >= 70) {
+     result = "미"; 
+    }
+  else if(score >= 60) {
+     result = "양";
+    }
+  else {
+     result = "가";
+    }
+    // console.log(score, result);
+
+    // if문을 이용한 올바른 계절 출력하기
+    // -- 실수로 12를 초과 값을 입력 해도 올바른 계절이 나올 수 있도록 고려해 보기기
+    let input = prompt("계절을 알고 싶은 월을 입력 하세요(1~12).");
+    let month = Number(input);
+    let season;
+    let mod = month % 12;
+    if(mod === 0) month = 12;
+
+    if(mod <= 2) { season = "겨울 입니다";}
+    else if(mod <= 5) { season = "봄 입니다";}
+    else if(mod <= 8) { season = "여름 입니다";}
+    else { season = "가을 입니다";}
+
+    console.log( `${mod}월은 ${season}입니다`);
+
+</script>
+
 </body>
 </html>
