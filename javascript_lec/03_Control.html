@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>control</title>
 </head>
+
 <body>
 
-<!--
+  <!--
 1. if 문
   1) 형식
     if(조건식) {
@@ -87,46 +89,226 @@
 -->
 
 
-<script>
+  <script>
 
-  // if문을 이용한 성적 처리
-  let score = prompt("점수를 입력하세요(0~100).");
-   console.log(score, typeof score) //----- prompt 대화 상자로 입력한 모든 값은 string 타입 이다.
-  let result;
+    // if문을 이용한 성적 처리
+    let score = prompt("점수를 입력하세요(0~100).");
+    console.log(score, typeof score) //----- prompt 대화 상자로 입력한 모든 값은 string 타입 이다.
+    let result;
 
-  if(score >= 90) { 
-    result = "수";
+    if (score >= 90) {
+      result = "수";
     }
-  else if(score >= 80) { 
-    result = "우"; 
+    else if (score >= 80) {
+      result = "우";
     }
-  else if(score >= 70) {
-     result = "미"; 
+    else if (score >= 70) {
+      result = "미";
     }
-  else if(score >= 60) {
-     result = "양";
+    else if (score >= 60) {
+      result = "양";
     }
-  else {
-     result = "가";
+    else {
+      result = "가";
     }
     // console.log(score, result);
 
     // if문을 이용한 올바른 계절 출력하기
     // -- 실수로 12를 초과 값을 입력 해도 올바른 계절이 나올 수 있도록 고려해 보기기
-    let input = prompt("계절을 알고 싶은 월을 입력 하세요(1~12).");
-    let month = Number(input);
+    let input1 = prompt("계절을 알고 싶은 월을 입력 하세요(1~12).");
+    let month = Number(input1);
     let season;
     let mod = month % 12;
-    if(mod === 0) month = 12;
+    if (mod === 0) month = 12;
 
-    if(mod <= 2) { season = "겨울 입니다";}
-    else if(mod <= 5) { season = "봄 입니다";}
-    else if(mod <= 8) { season = "여름 입니다";}
-    else { season = "가을 입니다";}
+    if (mod <= 2) { season = "겨울 입니다"; }
+    else if (mod <= 5) { season = "봄 입니다"; }
+    else if (mod <= 8) { season = "여름 입니다"; }
+    else { season = "가을 입니다"; }
 
-    console.log( `${mod}월은 ${season}입니다`);
+    console.log(`${mod}월은 ${season}입니다`);
 
-</script>
+  </script>
 
+  <script>
+
+    let number = 3;
+    switch (number) {
+      case 1:
+        console.log("1이다.");
+        break
+      case 2:
+        console.log("2이다.");
+        break
+      default:
+        console.log("ddd");
+    }
+  </script>
+
+  <script>
+    // number 타입입
+    // 짝수 / 홀수 출력
+    switch (number % 2) {
+      case 0:
+        console.log("짝수");
+        break;
+      case 1:
+        console.log("홀수");
+        break;
+    }
+
+    let hour = prompt("현재 시간을 입력 하세요(0~23).");
+    // 오전 / 오후
+
+    switch (parseInt(hour / 12)) {
+      case 0:
+        console.log(`${hour}시는 오전 입니다.`);
+        break
+      case 1:
+        console.log(`${hour}시는 오후 입니다.`);
+        break
+    }
+
+    // string 타입
+    let n = 1;
+    let cmd = "increment" // increment, decrement
+    switch (cmd) {
+      case "incremen":
+        console.log(n + 1);
+        break;
+      case "decremet":
+        console.log(n - 1);
+        break;
+    }
+
+    // boolean 타입 (좋지 않은 개발 스타일)
+
+    let input = prompt("정수를 입력 하세요.");
+    let isPositive = input >= 0;
+    switch (isPositive) {
+      case true:
+        console.log("양수");
+        break;
+      case false:
+        console.log("음수");
+        break;
+    }
+
+    switch (parseInt(month & 12 / 3)) {
+      case 0: console.log("겨울"); break;
+      case 1: console.log("봄"); break;
+      case 2: console.log("여름"); break;
+      case 3: console.log("가을"); break;
+    }
+
+  </script>
+
+  <script>
+
+    // 1,2,3,4,5 문자열 만들기
+    let value = 5;
+    let str = '';
+
+    while (value >= 1) {
+      str += value-- + ",";
+    }
+    console.log(str);
+
+    // 연습) 1 ~ 100 사이 정수 중에서 3,6,9로 끝나는 정수를 문자열 만들기
+
+    let numbers = 1;
+    let result1 = '';
+
+    while (numbers <= 100) {
+      if (numbers % 10 === 3 || numbers % 10 === 6 || numbers % 10 === 9) {
+        number += 10 + ",";
+      }
+      numbers++;
+    }
+    console.log(result1);
+
+  </script>
+
+  <script>
+
+    // 1,2,3,4,5
+    let str1 = '';
+    for (let value = 1; value <= 5; value++) {
+      str1 += value + ',';
+    }
+    console.log(str1);
+
+    {
+      // 1일차 1교시 ... 8교시 2일차 교시 ... 8교시, ... 5일차 1교시 ... 8교시
+
+      let dayClass = '';
+      for (let day = 1; day <= 5; day++) {
+        dayClass += day + '일차';
+        for (let hour = 1; hour <= 8; hour++) {
+          dayClass += hour + '교시';
+        }
+      }
+      document.write(dayClass);
+    }
+
+
+    // 연습) <ul><li>1분기</li><li>2분기</li> ... <li>4분기</li>
+
+    let a = '<ul>';
+    for (let i = 1; i <= 4; i++) {
+      a += `<li>${i}분기</li>`;
+    }
+    a += '</ul>';
+    document.write(a);
+    {
+      // 연습) <select><option value="1">1월</option><option value="2">2월</option>...</select> 문자열 만들어 화면에 출력
+      let str2 = '<select>';
+      for (let value = 1; value <= 12; value++) {
+        str2 += `<option value = "${value}">${value}</option>`
+      }
+      str2 += '</select>';
+      document.write(str2);
+    }
+    {
+      // 연습) <div><img src="../assets/imges/??"><img src="..."><img srd="..."></div> X 3 : 총 9개 이미지를 화면 출력력
+      let str3 = '';
+      for (let i = 1; i <= 3; i++) {
+        str3 += '<div>';
+        for (let j = 1; j <= 3; j++) {
+          str3 += `<img src = "../assets/images/animal${j}.jpg" width="100px">`;
+        }
+        str3 += '</div>';
+      }
+      document.write(str3);
+    }
+
+    {
+      let str4 = '';
+      for (let i = 2; i <= 9; i++) {
+        str4 += '<div>';
+        for (let j = 1; j <= 9; j++) {
+          str4 += `${i} x ${j} = ${i * j}<br>`;
+        }
+        str4 += '</div><br>';
+      }
+      document.write(str4);
+    }
+  </script>
+
+  <script>
+
+    // 무한 루프: 의도적으로 반복문이 끝나지 않도록 설정한 루프
+    let str5 = "";
+    let value2 = 1;
+    while (true) {
+      str += value2++ + ",";
+      if (value2 > 5) {
+        break;
+      }
+    }
+    console.log(str5);
+
+  </script>
 </body>
+
 </html>
