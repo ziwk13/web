@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>function</title>
 </head>
+
 <body>
-  
-<!--
+
+  <!--
 1. 함수란?
   1) 함수는 특정 작업을 수행하는 코드 블록으로, 필요할 때마다 호출할 수 있습니다.
   2) 코드의 재사용성, 가독성, 유지보수성, 추상화에 기여합니다.
@@ -17,10 +19,10 @@
 2. 함수 작성 방법
   1) 함수 선언식
     (1) function 키워드와 함수명으로 정의하고, 호이스팅됩니다.
-    (2) 형식: function 함수명() { ... }
+    (2) 형식: function 함수명() { ... }  // 기명 함수
   2) 함수 표현식
     (1) 함수를 변수에 할당합니다. 호이스팅되지 않습니다.
-    (2) 형식: const 변수명 = function() { ... }
+    (2) 형식: const 변수명 = function() { ... }  // 익명 함수 (이름이 없는 함수)
   3) 화살표 함수
     (1) 간결한 함수 표현식을 지원합니다. this 바인딩이 불가합니다.
     (2) 형식: const 변수명 = () => { ... }
@@ -100,5 +102,261 @@
     })
 -->
 
+  <script>
+
+    //------1. 함수 선언식
+    function declare() {
+      console.log('declare 함수가 호출 되었습니다.');
+    }
+
+    //------2. 함수 표현식
+    const expr = function () {
+      console.log('expr 함수가 호출 되었습니다.');
+    }
+
+    //------3. 화살표 함수
+    const arrow = () => {
+      console.log('arrow 함수가 호출 되었습니다.');
+    }
+
+    // 함수 호출하기 ( 함수 실행 하기 )
+    declare();
+    declare();
+    expr();
+    expr();
+    arrow();
+    arrow();
+
+  </script>
+  <script>
+
+    function info(name, age) { //--- 매개변수(Parameter): name, age
+      console.log(name, age);
+    }
+
+    info("오오", 30); //----------- 인자(Argument): "오오", 30
+    info("줌마려움", "20번");
+
+    let name = "진짜급함";
+    let age = "거짓말 아님";
+    info(name, age);  //----------- 인자(Argument): name, age
+  </script>
+  <script>
+    // 배열을 받아서 사용하는 함수수
+    const infoArry = function (numbers) {
+      for (let i = 0; i < numbers.length; i++) {
+        console.log(numbers[i]);
+      }
+    }
+
+    infoArry([10, 20, 30,]);
+
+    // rest 문법을 활용하는 함수
+
+    const infoRest = function (arg, ...rest) {  // 여기서 사용된 rest 매개변수는 배열 이다. 나머지 매개변수는 항상 마지막에 선언 한다.
+      for (let i = 0; i < rest.length; i++) {
+        console.log(arg, rest[i]);
+      }
+    }
+
+    // 전달하는 인자(Argument)의 개수가 다른 경우
+    infoRest("x",);
+    infoRest("x", "y",);
+    infoRest("x", "y", "z",);
+
+  </script>
+  <script>
+
+    // 객체가 전달되는 경우 매개변수 대신 구조 분해 할당 문법을 사용 할 수 있다.
+    const infoObject = ({ model, maker, price }) => {
+      console.log(model);
+      console.log(maker);
+      console.log(price);
+    }
+
+    // 인자로 객체를 사용
+    infoObject({
+      model: "SORENTO",
+      maker: "KIA",
+      price: 5000,
+    });
+  </script>
+  <script>
+
+    function handle(callback) {   //   2) 전달된 익명 함수를 callback 매개변수에 저장 한다. (함수 표현식)
+      callback();                 //   3) callback 함수를 호출 한다. 전달된 익명 함수가 실행 된다.
+    }
+
+    handle(function () {             // 1) 익명 함수를 handle 함수에 인자로 전달 한다
+      console.log('Anonymous 함수가 호출 되었습니다.')
+    });
+
+    // 연습) greet 함수에 콜백 함수와 이름을 전달 하면 해당 이름이 출력 되도록 구성 하기
+    function greet(callback, name) {
+      callback(name);
+    }
+
+    greet(function (name) {
+      console.log("안녕" + name + "!")
+    }, "나야함수");
+
+    // 연습) summaryArray 함수에 콜백 함수와 양의 정수를 전달 하면 1부터 전달된 양의 정수 까지 모두 더한 결과를 출력 하도록
+    function summaryArray(callback, number) {
+      callback(number);
+    }
+    summaryArray(function (number) {
+      let sum = 0;
+      for (let n = 0; n <= number; n++) {
+        sum += n;
+      }
+      console.log(`1부터 ${number}까지 합은 ${sum}입니다.`);
+    }, 10000);
+  </script>
+
+  <script>
+    // 반환
+
+    function one() {
+      return 1;  // 함수 호출한 곳으로 1을 반환 한다.
+    }
+    const oneResult = one();  // 함수 호출은 반환 값으로 바뀐다.
+    console.log(oneResult);
+
+    function plusOne(arg) {
+      return arg + 1;
+    }
+    console.log(plusOne(10));
+
+    //  배열을 전달 하면 해당 배열의 모든 값을 더한 값을 반환
+    function sumArry(numbers) {
+      let total = 0;
+      for (const number of numbers) {
+        total += number;
+      }
+      return total;
+    }
+    const sumResult = sumArry([1, 2, 3, 4, 5,]);
+    console.log(sumResult);
+
+    //  배열을 반환 하는 함수
+    function retArry() {
+      return ["이", "거", "시", "다"];
+    }
+    const real = retArry();
+    console.log(real[0], real[real.length - 1]);
+    const [first, , , last] = retArry(); // 배열의 첫 요소와 4번째 요소를 저장 하는 구조 분해 할당 문법
+    console.log(first, last);
+
+    //  객체를 반환 하는 함수
+    function retObject(namename, age) {
+      return {
+        namename: namename,
+        nai: age,
+      }
+    }
+    const user = retObject("나야이름", 77820);
+    console.log(user.namename, user.nai);
+    const { namename } = retObject("이름", 1);
+    console.log(namename);
+
+    //  함수를 반환 하는 함수
+    function retFunction() {
+      return function () {
+        console.log('hello world');
+      }
+    }
+    const sayHello = retFunction();
+    sayHello();
+    retFunction()();
+
+    // 함수에 전달 하는 데이터를 인자 라고 합니다.
+    // 함수로 전달된 데이터는 매게변수에 저장 합니다.
+    // 함수 실행 결과를 반환 할 땐 return 키워드를 사용 합니다.
+    // 함수는 호출된 이후 반환값으로 바뀝니다.
+
+    //  연습) 어떤 놀이기구는 몸무게가 90 이상인 경우 이용이 불가능 합니다.
+    //        몸무게가 40 미만의의 경우 부모의 동의가 있으면 이용이 가능 합니다. (confirm 함수를 찾아보기)
+    //        나머지 경우에는 부모의 동의가 없어도 이용이 가능 합니다.
+    //        prompt를 이용 해서 몸무게를 입력 받아 isPossible 함수에 전달 합니다.
+    //        isPossible 함수는 놀이기구의 이용이 가능 하면 true 아니면 false를 반환 합니다.
+    //        최종 실행 시 "놀이기구 탑승이 가능 합니다.", "놀이기구 탑승이 거절 되었습니다." 중 하나의 메시지를 출력 합니다.
+
+    function isPossible(weight) {
+      if (weight >= 90) {
+        return false;
+      }
+      else if (weight < 40) {
+        return confirm("부모님의 동의가 있습니까?");
+      }
+      else {
+        return true;
+      }
+    }
+    let input = prompt("몸무게를 입력 하시오 (kg):");
+    let weight = Number(input);
+
+    let result = isPossible(weight);
+
+    if (isNaN(weight)) {
+      alert("몸무게만 입력 해주세요 (kg)");
+    }
+    else {
+      let result = isPossible(weight);
+    }
+
+    if (result) {
+      alert("놀이기구 탑승이 가능 합니다.");
+    }
+    else {
+      alert("놀이기구 탑승이 거절 되었습니다.");
+    }
+
+    // 함수와 값을 전달하면 전달한 함수에 값을 연산한 결과를 반환 하는 함수를 구성 한다.
+    function add(a, b) { return a + b };
+    function sub(a, b) { return a - b };
+    function mul(a, b) { return a * b };
+    function div(a, b) { return a / b };
+    function mod(a, b) { return a % b };
+
+    // calculate 함수 만들기
+
+    function calculate(operation, a, b) {
+      return operation(a, b);
+    }
+
+    // calculate 함수 호출 하기
+    const value1 = 5;
+    const value2 = 3;
+    const addResult1 = calculate(add, value1, value2);
+    console.log(addResult1);
+
+    const addResult2 = calculate(sub, value1, value2);
+    console.log(addResult2);
+
+    const addResult3 = calculate(mul, value1, value2);
+    console.log(addResult3);
+
+    const addResult4 = calculate(div, value1, value2);
+    console.log(addResult4);
+
+    const addResult5 = calculate(mod, value1, value2);
+    console.log(addResult5);
+
+    // 연습 배열과 함수를 전달 하면 배열의 모든 요소를 전달 한 함수 처리 하여 반환
+
+    function handleArry(arr, callback) {
+      const result = [];
+      for ( const element of arr) {
+        result.push(callback(element));
+      }
+      return result;
+    }
+    const arrResult = handleArry([ 1, 2, 3, ], function(number) {
+      return num * 2;
+    });
+    console.log(arrResult);
+  </script>
+
 </body>
+
 </html>
