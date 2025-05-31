@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>object</title>
+  <style>
+    .gnb {
+      border: 1px solid red;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!--
+1. 객체(Object)
+
+  1) JavaScript 데이터 유형 중 하나입니다.
+  2) 데이터와 함수(메소드)를 하나로 묶어 관리할 수 있는 자료구조입니다.
+  3) 데이터가 저장되는 순서는 관리하지 않습니다.
+  4) 객체를 구성하는 하나의 데이터는 속성(property): 값(value) 조합으로 구성됩니다. (key: value 구조를 가짐)
+    (1) 속성(property, 프로퍼티): 문자열 또는 심볼
+    (2) 값(value): 문자열, 숫자, boolean, 배열, 다른 객체, 함수 등 모든 타입 가능
+  5) 각 데이터들은 쉼표(comma)로 구분하며, trailing comma(후행 쉼표)를 사용할 수 있습니다.
+  6) 객체 생성 방식
+    (1) 객체 리터럴(literal): 메이저 방식
+      let user = {
+        name: "홍길동",
+        age: 30,
+      }
+    (2) Object 생성자
+      let user = new Object();
+      user.name = "홍길동";
+      user.age = 30;
+    (3) 생성자 함수
+      function Person(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      let user = new Person("홍길동", 30);
+    (4) 클래스
+      class Person {
+        constructor(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+      }
+      let user = new Person("홍길동", 30);
+  7) 프로퍼티 접근
+    1) 점 표기법(. Dot Notation)
+      obj.key
+    2) 대괄호 표기법([] Bracket Notation)
+      obj["key"]
+  8) 프로퍼티 조작
+    1) 추가 및 수정 (새로운 프로퍼티를 사용하면 추가, 기존 프로퍼티를 사용하면 수정)
+      obj.key = "value"
+    2) 프로퍼티 삭제
+      delete obj.key
+
+
+2. for in 문
+  1) 객체가 가지고 있는 모든 프로퍼티는 for in 문으로 하나씩 조회할 수 있습니다.
+  2) 임의의 순서로 프로퍼티들을 조회합니다.
+  3) for in 문 내부에서는 객체의 프로퍼티를 추가, 수정, 제거하지 않는 것이 좋습니다.
+  4) 조회된 프로퍼티는 문자열 타입이므로 해당 속성의 값을 확인하려면 대괄호 표기법을 사용해야만 합니다. (점 표기법 사용 불가)
+  5) 형식
+    for(프로퍼티 in 객체) {  // 프로퍼티는 문자열 타입
+      본문  // 객체["프로퍼티"] 형식으로 사용
+    }
+
+
+3. 키/값 반환 메소드
+  1) Object.keys(obj): 키 목록 배열 반환
+  2) Object.values(obj): 값 목록 배열 반환
+  3) Object.entries(obj): [키, 값] 쌍의 배열 반환
+
+
+4. 구조 분해 할당(Destructuring Assignment)
+  1) 객체의 프로퍼티를 해체하여 그 값을 개별 변수에 담을 수 있게 하는 JavaScript 표현식입니다.
+  2) 객체의 프로퍼티 이름과 변수의 이름이 일치해야 합니다. 순서는 상관없습니다.
+    let {name, age} = {name: "홍길동", age: 30};
+    // name = "홍길동", age = 30
+  3) 객체의 각 프로퍼티를 해체한 뒤 새로운 이름의 변수에 할당할 수 있습니다.
+    let {name: userName, age: userAge} = {name: "홍길동", age: 30};
+    // userName = "홍길동", userAge = 30
+  4) ...rest 문법(나머지 문법)을 이용해 필요한 변수만 할당할 수 있습니다.
+    let {name, ...rest} = {name: "홍길동", age: 30, tel: '010-0000-0000'};
+    // name = "홍길동", rest = {age: 30, tel: '010-0000-0000'}
+-->
+
+  <script>
+    {
+      // 객체 생성
+      const person = {
+        name: "아우치",
+        age: 30,
+        hobbies: [
+          "climbing",
+          "golf",
+          "running"
+        ]
+      }
+    }
+    {
+      // //객체 생성
+      // const movie = {
+      //   title: "기생충",
+      //   director: "봉준호",
+      //   runningTime: 120,
+      // }
+      // // 프로퍼티 모두 하나씩 조회
+      // for ( const p in movie ) {
+      //   console.log(p, movie[p]);
+      // } 
+    }
+    {
+      // 모든 책 정보를 테이블로 화면에 표현 하기기
+      const course = {
+        name: "자바/스프링 부트캠프",
+        teacher: "민경태",
+        level: 3,
+        books: [
+          {
+            title: "혼공자바스크립트",
+            author: "윤인성",
+            publisher: "한빛미디어",
+          },
+          {
+            title: "혼공자바",
+            author: "신용권",
+            publisher: "한빛미디어",
+          },
+          {
+            title: "스프링부트3",
+            author: "홍팍",
+            publisher: "길벗",
+          }
+        ],
+      }
+      let str = '<table border = "1"><thead><tr><th>제목</th><th>저자</th><th>출판사</th></tr></thead><tbody>';
+      for (const book of course.books) {
+        str += '<tr>';
+        for (const i in book) {
+          str += `<td>${book[i]}</td>`;
+        }
+        str += '</tr>';
+      }
+      str += '</tbody></table>';
+      document.write(str);
+    }
+  </script>
+
+  <script>
+    {
+      // // 객체
+      // const qna = {
+      //   question: "대한민국의 수도는?",
+      //   answer: "서울",
+      // }
+
+      // // 구조 분해 할당
+      // const { question, answer } = qna;
+
+      // // 분해된 변수 확인
+      // document.writeln(question, answer);
+    }
+
+    {
+      //  연습) 각 항목에 링크가 걸린 ul 목록 만들어 화면에 출력 하기
+      const info = {
+        sites: [
+          {
+            name: '네이버',
+            url: 'https://www.naver.com',
+          },
+          {
+            name: '카카오',
+            url: 'https://www.kakao.com',
+          },
+          {
+            name: '구글',
+            url: 'https://www,google.com',
+          },
+        ],
+      }
+      let str = '<ul class="gnb">';
+      for (const { name, url } of info.sites) { // info.sites 배열의 각 요소는 객체 이므로, 객체 구조 분해 할당으로 필요한 프로퍼티만 받아서 사용할 수 있다.
+        str += `<li><a href = "${url}" target="_blank">${name}</a></li>`;
+      }
+      str += '</ul>';
+      document.write(str);
+    }
+  </script>
+
+  <script>
+    const user = {
+
+      name: "jackson",
+      age: 30,
+      phone: "010-1111-2222",
+      gender: "male",
+      addr: "seoul",
+    }
+
+    // 객체나 배열에서 사용 할 수 있는 새로운 연산자: 스프레드 연산자(...)
+    // 객체나 배열을 펼쳐서(복사해서) 새로운 객체나 배열을 만들 때 사용 한다.
+
+    const newUser = {
+      ...user, // 객체 user의 모든 프로퍼티를 펼쳐서 사용 한다.
+      age: 21, // age만 덮어쓰기 한다.
+    }
+    console.log(newUser);
+  </script>
+  <script>
+    // 객체 리터럴 생성 시 프로퍼티와 값이 동일한 경우
+    // 프로퍼티만 작성 한다. (프로퍼티 단축 표기법법)
+    const title = "미션임파서블";
+    const actor = "톰크루즈";
+    const movie = {
+      title, // title: title,
+      actor, // actor: actor,
+    }
+
+  </script>
+
+</body>
+
+</html>

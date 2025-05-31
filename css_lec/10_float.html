@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>float</title>
+</head>
+<body>
+
+ <!-- 
+  float 속성
+
+  1. HTML 문서 요소의 일반적인 흐름에서 띄워(부유시켜) 왼쪽 또는 오른쪽에 배치하는 방식.
+  2. 최초 도입 목적은 이미지와 텍스트를 자연스럽게 감싸기 위해서 도입.
+  3. 이후 레이아웃 구성에서도 많이 활용 되었다.
+ -->
+
+ <style>
+  .container1 > div {
+   width: 60px;
+   height: 60px;
+   border: 1px solid red;
+   text-align: center;
+   line-height: 60px;
+  }
+  .container1 > .box1 {
+   float: right;
+  }
+  .container1 > .box2 {
+   float: left;
+  }
+ </style>
+ 
+<div class="container1">
+ <div class="box1">box1</div>
+ <div class="box2">box2</div>
+ <p>Nullam interdum metus sit amet leo pharetra, et vulputate odio vehicula. Integer tempor ipsum ligula, vel ultrices felis condimentum id. Pellentesque ac quam vel tortor condimentum rhoncus. Praesent non massa et ipsum tempus mattis vitae eget arcu. In vel efficitur tellus, non dictum tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ac mi interdum, sodales elit in, sollicitudin urna. Nunc lacus eros, sagittis eget sem sit amet, ornare maximus leo. Pellentesque nec aliquet est, quis rutrum ipsum. Mauris nec sapien at mi hendrerit accumsan vel quis neque.</p>
+</div>
+
+<br><br><br>
+
+<style>
+ .container2 > div {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  line-height: 100px;
+  text-align: center;
+  box-sizing: border-box;
+ }
+ .container2 > .box1, .container2 > .box2 {
+  float: left;
+ }
+ .container2 > .box3 {
+  clear: left; /* float: left; 영역을 벗어난다. (left, right, both) */
+  width: 200px;
+ }
+</style>
+
+<div class="container2">
+ <div class="box1">box1</div>
+ <div class="box2">box2</div>
+ <div class="box3">box3</div>
+</div>
+
+<!-- 연습 GNB(Global Naigation Bar) -->
+
+<style>
+ .gnb {
+  list-style: none;
+  padding: 0;
+ }
+ .gnb > li {
+  float: left;
+ }
+ .content {
+  clear: left;
+ }
+.gnb a {
+  padding: 10px 5px;
+  border-bottom: 1px solid black;
+  text-decoration: none;
+}
+.gnb a:hover {
+ border-bottom: 3px solid black;
+ background-color: yellow;
+ cursor: pointer;
+}
+.gnb a:active {
+ background-color: blue;
+}
+</style>
+
+<ul class="gnb">
+ <li><a href="https://m.sports.naver.com/index">홈</a></li>
+ <li><a href="https://m.sports.naver.com/kbaseball/index">야구</a></li>
+ <li><a href="https://m.sports.naver.com/wbaseball/index">해외야구</a></li>
+ <li><a href="https://m.sports.naver.com/kfootball/index/">축구</a></li>
+ <li><a href="https://m.sports.naver.com/basketball/index">농구</a></li>
+ <li><a href="https://m.sports.naver.com/volleyball/index">배구</a></li>
+ 
+</ul>
+<div class="content">내용이 나타나는 곳</div>
+ 
+</body>
+</html>

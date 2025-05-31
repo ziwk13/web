@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>background</title>
+ <style>
+  div {
+   box-sizing: border-box;
+   border: 1px solid black;
+  }
+ </style>
+</head>
+<body>
+ 
+ <style>
+  .box1 {
+   width: 50px;
+   height: 50px;
+   background-color: yellow;
+  }
+ </style>
+ 
+ <div class="box1"></div>
+
+ <br><br><br>
+
+ <style>
+  .box2 {
+   width: 200px;
+   height: 200px;
+   border: 1px solid red;
+   background-image: url("../assets/images/animal1.jpg");
+   background-size: 100% 100%; /* 100px 100px 와 동일 한다. */
+   background-size: 50% 50%;
+   background-repeat: no-repeat;
+   background-position: center; /* top, bottom, left, right, center */
+  } 
+  </style>
+
+  <div class="box2"></div>
+
+  <br><br><br>
+<style>
+ .box3 {
+  border: 1px solid red;
+  width: 300px;
+  height: 300px;
+  background-color: black;
+  background-image: url("../assets/images/logo_google.png");
+  background-size: no-repeat;
+  background-size: cover; /* 이미지 너비/높이 중 작은 부분을 최대한 키운다. 박스 밖으로 나간 부분은 잘려서 표시 되지 않는다. */
+  background-size: contain; /* 이미지 너비/높이 중 큰 부분에 맞춰 박스 안으로 넣는다. 이미지가 잘리진 않지만, */
+ }
+</style>
+
+
+  <div class="box3"></div>
+
+  <br><br><br>
+
+<style>
+ .box4 {
+  width: 120px;
+  height: 120px;
+  background-image: url("../assets/images/weather.png");
+  background-position: -144px 0; /* 왼쪽으로 144px, 위아래는 0 배경이미지를 이동 */
+  background-position: -144px ; /* 오른쪽으로 144px, 위아래는 center (지정이 없으면 center 적용) */
+  background-position: 0 -144px; /*좌우는 0 위로 144px */
+ }
+</style>
+
+  <div class="box4"></div>
+</body>
+</html>
