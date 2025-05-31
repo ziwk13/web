@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <!--
+    <select> 태그
+  
+    1. <select> 태그는 웹에서 드롭다운 목록(셀렉트 박스)을 생성하여 사용자가 여러 옵션 중 하나(또는 여러 개)를 선택할 수 있게 해주는 폼 요소입니다.
+    2. <select> 태그 내부에 <option> 태그를 함께 사용하여 선택 가능한 각 항목을 정의합니다.
+    3. <select> 태그 주요 속성
+      1) name
+        서버로 전송될 때 사용되는 변수명을 지정합니다.
+      2) size
+        한 번에 표시되는 옵션 개수를 지정합니다. 2 이상이면 리스트 박스 형태가 됩니다.
+      3) multiple
+        여러 개의 옵션을 동시에 선택할 수 있도록 구성합니다. (Shift/Ctrl+클릭)
+      4) required
+        필수 선택 필드로 지정합니다.
+      5) disabled
+        전체 select 박스를 비활성화합니다.
+    4. <option> 태그 주요 속성
+      1) value
+        옵션이 선택될 때 서버로 전송되는 값을 의미합니다. 생략하면 표시되는 텍스트를 사용합니다.
+      2) selected
+        시작할 때 선택되어 있도록 기본 선택 옵션으로 지정합니다.
+      3) disabled
+        해당 옵션을 선택 불가로 만듭니다.
+      4) hidden
+        옵션을 목록에서 숨깁니다. 주로 안내문구를 나타내고자 하는 경우 사용합니다.
+  -->
+
+  <!-- option 태그의 내부 텍스트를 value로 사용한다. -->
+  <form action="/select">
+    <select name="mobile">
+      <option>SKT</option>
+      <option>KT</option>
+      <option>LGU+</option>
+    </select>
+    <input type="submit" value="제출">
+  </form>
+
+  <hr>
+ <!-- option 태그에 value 속성을 만들면 해당 value 속성 값이 전달 된다. -->
+  <form action="/select">
+    <select name="nation">
+      <option vlaue="01">가나 +01</option>
+      <option value="02">가봉 +02</option>
+      <option value="82" selected>한국 +82</option>
+      <option value="99">일본 +99</option>
+    </select>
+    <input type="submit" value="제출">
+  </form>
+
+<!-- 사용자에게 안내 메시지를 보여주면서 동시에 반드시 항목을 선택 하도록 유도 할 수 있다. -->
+
+  <form action="/select">
+    <select name="menu" required>
+      <option value="" selected hidden disabled>주문 할 메뉴를 선택 해주세요.</option>
+      <option value="1">짜장</option>
+      <option value="2">짬뽕</option>
+      <option value="3">볶음밥</option>
+    </select>
+    <input type="submit" value="제출">
+  </form>
+
+  <hr>
+
+  <!-- multiple 속성을 추가하면 리스트 형태로 표시되어 다중 선택을 할 수 있고, 서버측에서는 배열로 해당 데이터를 받을 수 있다. -->
+  <form action="/select">
+    <select name="fruits" multiple>
+      <option value="apple">사과</option>
+      <option value="banana">바나나</option>
+      <option value="orange">오렌지</option>
+    </select>
+    <input type="submit" value="제출">
+  </form>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>link</title>
+</head>
+<body>
+  
+  <!--
+    <a> 태그
+
+    1. <a> 태그는 anchor의 약자로, HTML에서 하이퍼링크(hyperlink)를 생성할 때 사용하는 태그입니다.
+    2. 웹페이지에서 다른 페이지, 파일, 이메일 주소, 같은 페이지 내 특정 위치 등으로 이동할 수 있는 링크를 만들 때 사용합니다.
+    3. 주요 속성
+      1) href
+        링크의 목적지(이동할 주소)를 지정합니다. 필수 속성입니다. (예: <a href="https://example.com">Example</a>)
+      2) target
+        링크를 어디에서 열지 지정합니다. (예: <a href="https://naver.com" target="_blank">네이버</a>)
+        _self: 현재 창(기본값)
+        _blank: 새 창(또는 새 탭)
+      3) hreflang
+        링크된 페이지의 언어를 명시합니다. (예: <a href="..." hreflang="en">)
+      4) title
+        마우스를 올렸을 때 툴팁(설명문구)로 표시됩니다.
+      5) download
+        링크 클릭 시 파일을 다운로드하도록 지정할 수 있습니다.
+    4. 주요 특징
+      1) URL의 종류
+        (1) 절대 URL: 전체 경로를 모두 명시합니다. (예: https://www.example.com/page.html)
+        (2) 상대 URL: 현재 문서를 기준으로 경로를 명시합니다. (예: ./page.html)
+      2) 기본 스타일
+        (1) 방문하지 않은 링크: 파란색, 밑줄
+        (2) 방문한 링크: 보라색, 밑줄
+        (3) 클릭 중(active) 링크: 빨간색, 밑줄
+      3) 인라인 요소
+        <a> 태그는 감싼 내용(content)만큼만 영역을 차지하는 인라인 요소이므로 줄바꿈이 발생하지 않습니다. <a> 태그 내부에 블록 요소가 오지 않도록 주의해야 합니다.
+  -->
+
+  <!-- 파일 연결 -->
+  <a href="https://www.naver.com" target=" _blank">네네이이버버</a>
+  <br>
+  <ul>
+    <li><a href="./05_정치.html">정치</a></li>
+    <li><a href="./05_경제.html">경제</a></li>
+    <li><a href="./05_연예.html">연예</a></li>
+  </ul>
+
+  <!-- id 연결 (동일한 문서 내 이동) -->
+  <div id="part1">파트1</div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+  <div id="part2">파트2</div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+  <a href="#part1">파트1 이동</a><br>
+  <a href="#part2">파트2 이동</a><br>
+
+  <!-- 이미지 링크 -->
+  <a href="https://www.naver.com">
+    <img src="../assets/images/logo_naver.png" width="100" alt="네이버로고">
+  </a>
+
+  <a><div>클릭</div></a>    <!-- 불가능 : 인라인 a 태그 안에 블록 div 태그 넣기 -->
+  <a><span>클릭</span></a>  <!-- 가능 : 인라인 a 태그 안에 인라인 span 태그 넣기 -->
+
+
+</body>
+</html>

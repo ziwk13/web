@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <!--
+    <form> 태그
+    
+    1. <form> 태그는 웹페이지에서 사용자의 입력 데이터를 서버로 전송하기 위한 입력 양식(폼)을 정의하는 HTML 태그입니다.
+    2. 로그인, 회원가입, 검색, 설문 등 다양한 입력 기능의 기본 구조로 사용됩니다.
+    3. 폼 내부에는 다양한 입력 요소(<input>, <select>, <textarea>, <button> 등)가 포함됩니다.
+    4. 주요 속성
+      1) action
+        폼 데이터를 전송할 서버의 URL을 지정합니다. 폼 제출 시 이 URL로 데이터가 전송됩니다.
+      2) method
+        (1) 데이터 전송 방식을 지정합니다.
+        (2) 종류
+          - get: 데이터가 URL에 노출되어 전송 (검색, 단순 조회에 적합)
+          - post: 데이터가 본문(body)에 담겨 전송 (로그인, 회원가입 등 보안이 필요한 경우)
+      3) name
+        폼의 이름을 지정합니다. 서버에서 폼을 구분할 때 사용할 수 있습니다.
+      4) enctype
+        (1) 데이터 인코딩 방식을 지정합니다. 
+        (2) 종류
+          - application/x-www-form-urlencoded: <form> 태그의 기본 enctype 값, 폼 데이터는 서버로 전송되기 전에 URL-Encode되어 전송
+          - multipart/form-data: <input type="file">을 포함하여 파일을 업로드하려는 <form> 태그에서 사용, 반드시 method="post"여야 함
+  -->
+
+  <!--
+   URL 구성
+
+   http://localhost:8080/users?page=1
+
+   프로토콜://호스트:포트번호/서버경로?쿼리스트링
+
+   프로토콜 : 통신규약
+     호스트 : 서버를 의미. 도메인 또는 IP 주소로 구성
+   포트 번호: 서버에서 실행 중인 특정 서비스의 식별 번호
+   서버 경로: 서버 내부에서 특정 기능을 수행 하는 내부 주소
+  쿼리스트링: GET 방식일 때 확인 가능. 서버로 보내는 데이터를 의미함. ?파라미터1=값1&파라미터2=값2&파라미터3=값3...
+  -->
+
+  <!-- 
+    양식 제출 하기
+    1. action: 양식을 제출할 서버의 경로 (서버 프로그래밍 배울 때 신경 쓰면 됩니다.)
+    2. emthod: 데이터를 전송하는 방식 (디폴트 get)
+    3.enctype: 데이터의 종류에 따라 다르게 설정 (디폴트 application/x-www-form-urlencoded: URL의 모든 데이터를 인코딩 해서 전송 )
+    4.type="email": email 입력 형식 체크. 단, 기능이 부족하기 때문에 실무에서는 잘 사용하지 않습니다. (대신 정규식 사용)
+    5. name  : 서버로 보내는 파라미터의 이름
+    6. type="submit": 서버(action)로 폼 내부의 모든 입력 양식을 보내는 것
+  -->
+   <form action="/users"
+         method="get"
+        enctype="application/x-www-form-urlencoded">
+    <input type="email" name="email" placeholder="이메일"><br>
+    <input type="text" name="phone" placeholder="전화번호"><br>
+    <input type="submit" value="제출하기">
+   </form>
+  
+<hr>
+
+<!-- post 방식으로 양식 제출하기 -->
+ <form action="/login"
+       method="post"
+        >
+      <input type="text" name="uid" placeholder="아이디"><br>
+      <input type="password" name="pwd" placeholder="****"><br>
+      <input type="submit"  value="로그인">
+      <input type="reset" value="입력취소">
+
+      </form>
+
+      <hr>
+
+      <!-- 네이버 검색 엔진 사용해 보기 -->
+       <form action="https://search.naver.com/search.naver">
+        <!-- 사용자가 입력 하지 않아도 서버로 전송 되는 데이터들은 hidden 처리해서 전송 합니다. -->
+         <input type="hidden" name="where" value="nexearch">
+         <input type="hidden" name="ie" value="utf8">
+        <input type="text" name="query" placeholder="검색어를 입력 하세요"><br>
+        <input type="submit" value="네이버 검색">
+       </form>
+
+      <!-- Google 검색 엔진 사용해 보기 -->
+       <form action="https://www.google.com/search">
+        <input type="text" name="q" placeholder="검색어를 입력 하세요"><br>
+        <input type="submit" value="구글 검색">
+       </form>
+
+       <hr>
+
+       <!-- 
+       파일 첨부 양식 제출 하기 
+       
+       반드시 method="post"와 enctype="multipart/form-data" 를 모두 사용 해야 한다.
+       -->
+        <form method="post"
+              enctype="multipart/form-data"
+        >
+              <input type="file" name="profile" accept="image/*"><br>
+              <input type="submit" value="제출">
+
+            </form>
+
+</body>
+</html>
