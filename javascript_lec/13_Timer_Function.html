@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>timer</title>
 </head>
+
 <body>
 
-<!--
+  <!--
 1. setTimeout()
   1) 전역 메소드 setTimeout()은 만료된 후 함수나 지정한 코드 조각을 한 번 실행하는 타이머를 설정합니다.
   2) 구문
@@ -54,5 +56,92 @@
       clearInterval(intervalID);
 -->
 
+  <script>
+    {
+      // const id = setTimeout(() => {
+      //   alert("당장 나가")
+      // }, 3000);  // 1000밀리초(1초) 후에 함수가 동작 한다
+      // console.log(id);  // setTimeout은 비동기 함수 이므로, 실행 순서에 영향을 미치지 않는다.
+      // // 비동기 함수란 실행의 완료를 기다리지 않고, 다음 실행을 진행 하는 함수 이다.
+      // clearTimeout(id);  // 타이머 아이디가 id인 타이머를 취소 한다.
+    }
+    {
+      // setTimeout(() => { alert("네"); }, 3000);
+      // setTimeout(() => { alert("이놈"); }, 5000);
+
+      // 3초 후 "네" 출력 후 3초 지나면 "이놈" 출력 하기 (콜백 지옥: Callback Hell)
+      // setTimeout(() => {
+      //   alert("네");
+      //   setTimeout(() => {
+      //     alert("이놈");
+      //   }, 3000);
+      // }, 3000);
+    }
+    {
+      // 연습) 1초 마다 화면에 1씩 줄어든 값을 보여주는 타이머를 구현 한다.
+      //       전달한 인자 값에 따라 타이머가 동작 한다.
+      //       timer(3) 호출 하면 화면에 "3","2","1","타이머완료"메시지가 1초마다 순차적으로 나타난다.
+      // const timer = () => {
+      //   setTimeout(() => {
+      //     alert("3");
+      //     setTimeout(() => {
+      //       alert("2");
+      //       setTimeout(() => {
+      //         alert("1")
+      //         setTimeout(() => {
+      //           alert("타이머 완료");
+      //         }, 1000);
+      //       }, 1000);
+      //     }, 1000);
+      //   }, 1000);
+
+    }
+    // {
+    //   const timer = (second) => {
+    //     setTimeout(() => {
+    //       if (second === 0) {
+    //         document.write("타이머 완료");
+    //         return; // setTimeout에 전달한 익명 함수를 종료 한다. 그러면 timer 함수를 더 이상 호출 할 수 없으므로 전체 타이머가 종료 된다.
+    //       }
+    //       document.write(`<div>${second--}</div>`);
+    //       (timer(second)); // timer 함수 내부에서 time 함수를 호출 한다. 이와 같은 호출을 재귀 호출(Recursive Call) 이라고 한다.
+    //     }, 1000)
+    //   }
+    //   document.write(timer(3));
+    // }
+  </script>
+  <script>
+
+    // {
+    //   let count = 0;
+    //   const id = setInterval(() => {
+    //     count++;
+    //     console.log("여기 사람" + count + "명 있어요");
+    //     if (count === 5) {
+    //       clearInterval(id);
+    //     }
+    //   }, 1000);
+    // }
+    {
+      // 연습) 1초 마다 화면에 1씩 줄어든 값을 보여주는 타이머를 구현 한다.
+      //       전달한 인자 값에 따라 타이머가 동작 한다.
+      //       timer(3) 호출 하면 화면에 "3","2","1","타이머완료"메시지가 1초마다 순차적으로 나타난다.
+      const timer = (second) => {
+       const id = setInterval(() => {
+         if( second === 0) {
+         document.write("없음");
+        clearInterval(id);
+        return;
+        }
+        document.write(`<div> 여기 사람 ${second--}명 있어요</div>`);
+      }, 1000);
+      }
+      timer(3);
+    }
+
+
+  </script>
+
 </body>
+
 </html>
