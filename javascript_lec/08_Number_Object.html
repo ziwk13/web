@@ -51,5 +51,16 @@ Number 내장 객체 (숫자를 표현하고 다루는 Primitive wrapper object)
   2) 소수점 뒤에 나타날 자릿수, 0 ~ 20 사이 값을 가짐, 기본값은 0
 -->
 
+<script>
+
+  console.log( Number.isInteger(10), Number.isInteger(3.14) );
+  console.log( Number.isNaN(5 / 2), Number.isNaN("hello" / 2) );
+  console.log( Number.parseInt("10"), Number.parseInt("10.5"), Number.parseInt(10.5) );
+  const number = 12345;
+  console.log( number.toFixed(2) );
+
+</script>
+
+
 </body>
 </html>
