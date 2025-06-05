@@ -1,40 +1,148 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div.star-line {
+      font-family: monospace;
+      margin: 5px 0;
+    }
+
+    #triangle {
+      text-align: center;
+    }
+  </style>
 </head>
+
 <body>
+  <!-- 
+  <script>
+    {
+      let cheker = '';
+      for (let i = 1; i <= 5; i++) {
+        cheker += '<div>';
+        for (let j = 1; j <= 5; j++) {
+          if ((i + j) % 2 === 0) {
+            cheker += 'X ';
+          }
+          else {
+            cheker += 'O ';
+          }
+        }
+        cheker += '</div><br>'
+      }
+      document.write(cheker);
 
- // ✅ 연습 문제: 영화 관람 가능 여부 판단하기 🎬
- // 사용자에게 나이를 입력받고, 아래 조건에 따라 결과를 출력하는 프로그램을 만들어보세요.
- 
- // 🎯 조건:
- // 나이가 19세 이상이면: "성인입니다. 모든 영화 관람이 가능합니다."
- 
- // 나이가 15세 이상 18세 이하면: "15세 이상 관람가 영화만 볼 수 있습니다."
- 
- // 나이가 12세 이상 14세 이하면: "12세 이상 관람가 영화만 볼 수 있습니다."
- 
- // 그 외에는: "관람 가능한 영화가 없습니다."
+    }
+  </script> -->
+  <!-- <script>
+    {
+      let star = '';
+      for (let i = 1; i <= 10; i++) {
+        let count = i <= 5 ? i : 10 - i;
+        star += '<div class="star-line">';
+        for (let j = 1; j <= count; j++) {
+          star += '* ';
+      }
+        star += '</div>';
+      }
+      document.write(star);
+    }
+  </script> -->
+  <!-- <script>
+    let num = 1;
+    let result = '';
+    for( i = 1; i <= 5; i++) {
+      result += '<div>';
+        for( j = 1; j <= i; j++) {
+          result += '*' + ' ';
+          num++;
+        }
+        result += '</div>'
+      }
+      document.write(result);
 
- <script>
+  </script> -->
+  <!-- <script>
+    let count = 1;
+    let result = '';
+    for (let i = 1; i <= 5; i++) {
+      result += '<div>';
+      for (let j = 1; j <= 5; j++) {
+        result += count + ' ';
+        count++;
+      }
+      result += '</div>'
+    }
+    document.write(result);
+  </script> -->
+  <script>
+    let count = 1;
+    let result = '';
+    for( i = 1; i <= 5; i++ ) {
+      result += '<div>';
+        for( j = 1; j <= 5 - i; j++ ){
+          result += '&nbsp;&nbsp;';
+        }
+          for( k = 1; k <= i; k++ ) {
+            result += count + ' ';
+            count++;
+          }
+        result += '</div>'
+    }
+    document.write(result);
+  </script>
+    <style>
+    table {
+      border-collapse: collapse;
+    }
 
-let input = prompt("연령 확인이 필요 합니다. 나이를 입력 해주세요");
-let number = Number(input);
-let age = number;
+    table td {
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+      text-align: center;
+      background-color: bisque;
+      color: brown;
+    }
+  </style>
 
-if ( age >= 19) {
-   console.log("성인 입니다. 모든 영화 관람이 가능 합니다");
-  } else if (age >= 15 && age <= 18) {
-    console.log("15세 이상 관람가 영화만 볼 수 있습니다.");
-  } else if (age >= 12 && age <= 14) { 
-   console.log("12세 이상 관람가 영화만 볼 수 있습니다.");
-  } else {
-   console.log("관람 가능한 영화가 없습니다.");}
+  <br><br>
 
- </script>
- 
-</body>
+  <table id="ox">
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <script>
+    const ox = document.getElementById('ox');
+    ox.addEventListener('click', function(e) {
+      if(e.target.textContent === "X") {
+        e.target.textContent = "O"
+      }
+      else {
+        e.target.textContent = "X"
+      }
+      });
+  </script>
+  
+
+
 </html>
