@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>regexp</title>
 </head>
+
 <body>
 
-<!--
+  <!--
 1. 정규 표현식(Regular Expression)
   1) 특정한 규칙을 가진 문자열의 집합을 표현하기 위한 형식 언어입니다.
   2) 텍스트 데이터에서 특정 패턴이나 규칙을 가진 문자열을 찾거나, 대체하거나, 검증할 때 사용됩니다.
@@ -54,15 +56,15 @@
      +         | 1개 이상의 반복 문자                          | goo+     : goo, good, goood, ...
      ^         | 시작이 일치하는 문자                          | ^a       : app, apple, asia, africa, ...
      $         | 끝이 일치하는 문자                            | end$     : end, the end, ... (불가 ending)
-     ?         | 0개 이상의 문자                               | colo?r   : color, colour
+     ?         | 0개 이상의 문자                               | colou?r  : color, colour
      ()        | 괄호 내의 문자를 문자 패턴으로 간주(그룹화)   | (app)A?  : appA, appappA, appappappA, ...
      |         | 또는                                          | a(b|c)   : ab, ac
      \         | 역슬래시 뒤 메타 문자를 일반 문자로 간주      | \.       : .
      {m}       | 정확히 m개 문자 (0 <= m <= 255)               | a{3}     : aaa
      {m,}      | m개 이상 문자 (0 <= m <= 255)                 | a{3,}    : aaa, aaaa, aaaaa, ...
      {m,n}     | m개 이상 n개 이하 문자 (0 <= m <= 255)        | a{2,3}   : aa, aaa
-     [ ]       | 대괄호 안 문자 중 하나와 일치                 | [a-z]    : 소문자 a~z 중 하나
-     [^ ]      | 대괄호 안 문자를 제외한 나머지와 일치         | [^a]     : 문자 a 를 제외한 나머지 모든 문자
+     [ ]       | 대괄호 속 문자 중 하나와 일치                 | [a-z]    : 소문자 a~z 중 하나
+     [^ ]      | 대괄호 속 문자를 제외한 나머지와 일치         | [^a]     : 문자 a 를 제외한 나머지 모든 문자
      \d        | 숫자(0~9)와 일치                              | \d{3}    : 숫자 3자리 (000 ~ 999)
      \w        | 영문자/숫자/밑줄 중 하나와 일치               | \w{4,12} : 영문자/숫자/밑줄로 4~12자 구성(예: 아이디)
     --------------------------------------------------------------------------------------------------------------------
@@ -91,5 +93,206 @@
       ② 예시: "a,b,c".split(/,/) → ['a', 'b', 'c']
 -->
 
+  <script>
+    {
+      const str = 'Hello World';
+      const regexp = /[al]/g;  // a 또는 l, g(모든 패턴 매칭)
+      console.log('RegExp test():', regexp.test(str));
+      console.log('RegExp exec():', regexp.exec(str));
+      console.log('String match():', str.match(regexp));
+      console.log('String search():', str.search(regexp));
+    }
+  </script>
+  <style>
+    .match {
+      color: red;
+    }
+
+    .not-match {
+      color: blue
+    }
+  </style>
+
+  <div>
+    <input type="text" id="post">
+    <button id="btn-post">우편검사님</button>
+    <span id="span-post"></span>
+  </div>
+  <script>
+    function verifyPost() {
+      const post = document.getElementById('post');
+      const spanPost = document.getElementById('span-post');
+      const regexp = /^[0-9]{5,7}$/;  // 010(-?[0-9]{4}){2})
+      document.getElementById('btn-post').addEventListener('click', () => {
+        if (regexp.test(post.value)) {
+          spanPost.textContent = '검사입니다.';
+          spanPost.classList.remove('match', 'not-match');
+        } else {
+          alert('네이놈');
+          spanPost.textContent = '마법사입니다.';
+          spanPost.classList.add('not-match');
+        }
+      })
+    }
+    verifyPost();
+  </script>
+  <br><br>
+
+  <div>
+    <input type="text" id="mobile">
+    <button id="btn-mobile">폰검사님</button>
+    <span id="span-mobile"></span>
+
+  </div>
+  <script>
+    function verifyMobile() {
+      const mobile = document.getElementById('mobile');
+      const spanMobile = document.getElementById('span-mobile');
+      const regexp = /^010(-?[0-9]{4}){2}$/
+
+      document.getElementById('btn-mobile').addEventListener('click', () => {
+        if (regexp.test(mobile.value)) {
+          spanMobile.textContent = '검사했습니다.';
+          spanMobile.classList.remove('match', 'not-match');
+        } else {
+          alert('네이놈');
+          spanMobile.textContent = '마법사했습니다.';
+          spanMobile.classList.add('not-match');
+        }
+      })
+    }
+    verifyMobile();
+  </script>
+  <br><br>
+  <div>
+    <input type="password" id="pw">
+    <button type="button" id="btn-pw">비번검사님</button>
+    <span id="span-pw">대문자, 소문자, 숫자, 특수문자 중 3가지 이상을 사용한 4 ~ 20자 </span>
+  </div>
+  <script>
+    function verifyPw() {
+      const pw = document.getElementById('pw');
+      const spanPw = document.getElementById('span-pw');
+      document.getElementById('btn-pw').addEventListener('click', () => {
+
+        const length = pw.value.length;
+        const ruleCount = /[A-Z]/.test(pw.value)  // 대문자 있으면 true (true는 숫자로 1 )
+                        + /[a-z]/.test(pw.value)  // 소문자 있으면 true (false는 숫자로 0 )
+                        + /[0-9]/.test(pw.value)  // 숫자   있으면 true
+                        + /[!@#]/.test(pw.value);  // !,@,#  있으면 true
+                    // + /[^A-Za-z0-9]/.test(pw.value); // 대문자, 소문자, 숫자를 제외한 문자가 있으면 true (모든 특수문자 허용)
+        spanPw.classList.remove('match', 'not-match');
+        if (length >= 4 && length <= 20 && ruleCount >= 3) {
+          spanPw.textContent = '축하드립니다';
+          spanPw.classList.add('match');
+        } else {
+          spanPw.textContent = '안타깝군요';
+          spanPw.classList.add('not-match');
+        }
+      });
+    }
+    verifyPw();
+  </script>
+  <br><br>
+  <div>
+
+<input type="text" id="id">
+<button type="button" id="btn-id">아이디</button>
+<span id="span-id">소문자/숫자/특수문자(-,_)가능, 첫 글자는 소문자만 가능, 글자수 4~20자</span>
+</div>
+<br><br>
+
+<input type="text" id="email">
+<button type="button" id="btn-email">이메일</button>
+<span id="span-email">@도메인.com</span>
+
+  <script>
+    {
+      // 아이디: 소문자/숫자/특수문자(-,_)가능, 첫 글자는 소문자만 가능, 글자수 4~20자
+      function verifyId() {
+
+        const id = document.getElementById('id');
+        const spanId = document.getElementById('span-id');
+        
+        document.getElementById('btn-id').addEventListener('click', () => {
+          const regexp = /^[a-z][a-z0-9-_]{3,19}$/;
+          
+          spanId.classList.remove('match', 'not-match');
+          if(regexp.test(id.value)) {
+            spanId.textContent = '허락한다'
+            spanId.classList.add('match')
+          } else {
+            spanId.textContent = '안타깝군'
+            spanId.classList.add('not-match')
+          }
+        });
+      }
+      verifyId();
+    }
+    {
+      // 이메일: 아이디 @ 호스트 .도메인  or 아이디 @ 호스트 . 도메인 .도메인
+      //  -호스트: 1글자 이상 (한글은 제외)
+      //  -도메인: .com, .org, .co.kr, .or.kr 등 글자수는 2 ~ 6자 (한글은 제외)
+      const email = document.getElementById('email');
+      const spanEmail = document.getElementById('span-email');
+
+      function verifyEmail() {
+        document.getElementById('btn-email').addEventListener('click', () => {
+          const regexp = /^[A-Za-z0-9-_]+@[A-Za-z0-9]+(\.[A-Za-z]{2,6}){1,2}$/;
+          spanEmail.classList.remove('match', 'not-match')
+          if(regexp.test(email.value)) {
+            spanEmail.textContent = '훌륭하군'
+            spanEmail.classList.add('match')
+          } else {
+            spanEmail.textContent = '절레절레'
+            spanEmail.classList.add('not-match')
+          }
+        });
+      }
+      verifyEmail();
+      }
+    {
+      // IP주소: 0~255.0~255.0~255.0~255
+      const regexp = /^([0-9]|[1-9][0-9]|1[0-9{2}|2[0-4][0-9]|25[0-5]])(\.([0-9]|[1-9][0-9]|1[0-9{2}|2[0-4][0-9]|25[0-5]])){3}$/;
+     }
+  </script>
+
+
+  <form id="form-login" method="post" action="/login">
+    <input type="text" id="user-id" placeholder="example@host.domain">
+    <br>
+    <input type="password" id="user-pw" placeholder="*****">
+    <br>
+    <button type="submit">선수입장</button>
+  </form>
+  <script>
+function doLogin() {
+  const userId = document.getElementById('user-id');
+  const userPw = document.getElementById('user-pw');
+  const regId = /^[A-Za-z0-9-_]+@[A-Za-z0-9]+(\.[A-Za-z]{2,6}){1,2}$/;  // 이메일 규칙
+  const regPw = /^[A-Za-z0-9!@#]{4,20}$/; 
+  
+  document.getElementById('form-login').addEventListener('submit', (e) => {
+    if(!regId.test(userId.value)) {
+      alert('애송이군');
+      userId.value = '';
+      userId.focus();
+      e.preventDefault();  // submit 방지지
+    } else if (!regPw.test(userPw.value)) {
+      alert('이것도 애송이군');
+      userPw.value = '';
+      userPw.focus();
+      e.preventDefault();
+    } else {
+      alert('!! 이럴 수가 !!')
+      e.preventDefault();
+      userId.value = '';
+      userPw.value = '';
+    }
+  });
+}
+doLogin();
+  </script>
 </body>
+
 </html>
