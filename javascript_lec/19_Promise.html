@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Promise</title>
 </head>
+
 <body>
 
-<!--
+  <!--
 1. Promise
   1) 자바스크립트에서 비동기 작업(예: 서버 데이터 요청, 파일 읽기 등)의 완료 또는 실패를 처리하기 위해 사용하는 내장 객체입니다.
   2) 비동기 작업이 완료된 이후 해당 작업의 성공 또는 실패에 따른 결과값을 처리하는 객체입니다.
@@ -117,5 +119,119 @@
     })
 -->
 
+  <button type="button" id="btn-not-work">DoNotWork</button>
+  <script>
+
+    document.getElementById('btn-not-work').addEventListener('click', () => {
+
+      let result;
+
+      const xhr = new XMLHttpRequest();
+      xhr.open('get', `https://jsonplaceholder.typicode.com/users/1`);
+      xhr.addEventListener('readystatechange', () => {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          const { name } = JSON.parse(xhr.responseText);
+          result = name;
+        }
+      })
+      xhr.send();
+      console.log('응답 결과', result);  // 비동기 작업 결과를 기다리지 않기 때문에 undefined 출력력
+    })
+  </script>
+
+  <br><br>
+
+  <button type="button" id="btn-promise">프로미스나인</button>
+  <script>
+
+    document.getElementById('btn-promise').addEventListener('click', () => {
+      const promise = new Promise((resolve, reject) => {
+        if (Math.random() < 0.5) {  // 50% 확률로 성공과 실패를 구성성
+          resolve('모 찌');  // 성공 시 호출 하도록 코드를 구성'
+        } else {
+          reject('기 모 찌');  // 실패 시 호출 하도록 코드를 구성
+        }
+      });
+      promise.then(data => {  // resolve() 호출은 then 메소드의 콜백함수와 연결 된다.
+        console.log(`기분이 아주 ${data} 합니다`);
+      })
+      promise.catch(() => {  // reject() 호출은 catch 메소드의 콜백함수와 연결 된다.
+        console.log(`기분이 아주 ${data} 였습니다`);
+      })
+    })
+  </script>
+
+  <button type="button" id="btn-work">DoWork</button>
+  <script>
+    document.getElementById('btn-work').addEventListener('click', () => {
+      let result;
+
+      new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('get', 'https://jsonplaceholder.typicode.com/users/1');
+        xhr.addEventListener('load', () => {  // load 이벤트는 요청과 응답이 성공 했음을 의미 한다.
+          resolve(JSON.parse(xhr.responseText));  // 비동기 작업 성공 시 resolve() 메소드를 호출 한다.
+        })
+        xhr.addEventListener('error', () => {  // error 이벤트는 요청이나 응답이 실패 했음을 의미 한다.
+          reject(xhr);  // 비동기 작업 실패 시 reject() 메소드를 호출 한다.
+        })
+        xhr.send();
+      })
+        .then(({ name }) => {
+          result = name
+          console.log(result);
+        })
+        .catch(({ status, statusText }) => {
+          console.log(status, statusText)
+        });
+
+    })
+  </script>
+
+  <hr>
+
+  <button type="button" id="btn-posts">요철</button>
+  <script>
+    document.getElementById('btn-posts').addEventListener('click', () => {
+      new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('get', 'https://jsonplaceholder.typicode.com/posts/100');
+        xhr.addEventListener('load', () => {
+          resolve(JSON.parse(xhr.responseText));
+        })
+        xhr.send();
+      })
+        .then((jsonData) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('get', `https://jsonplaceholder.typicode.com/users/${jsonData.userId}`); // 첫 번째 요청의 결과를 이용 해서 두 번째 요청을 진행 한다.
+          xhr.addEventListener('load', () => {
+            const result = JSON.parse(xhr.responseText);
+            console.log('이름', result.name);
+          })
+          xhr.send();
+        })
+    })
+  </script>
+
+  <button type="button" id="btn-then">요요철철</button>
+  <script>
+    // then 메소드의 체이닝 (연속 해서 호출 하기)
+    document.getElementById('btn-then').addEventListener('click', () => {
+
+      new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('get', `https://jsonplaceholder.typicode.com/users/1`);
+        xhr.addEventListener('load', () => {
+          resolve(JSON.parse(xhr.responseText));
+        })
+        xhr.send();
+      })
+        .then(user => user.address)  // then() 메소드의 콜백 함수가 반환한 값은 Promise 이다. (user.address가 저장된 값)
+        .then(address => address.geo)  // then() 메소드의 콜백 함수가 반환한 값은 Promise 이다. (address.geo가 저장 된 값)
+        .then(geo => console.log(geo));
+    })
+  </script>
+
 </body>
+
 </html>
