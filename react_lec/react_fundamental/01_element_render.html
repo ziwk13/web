@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,10 @@
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <title>Element</title>
 </head>
+
 <body>
-  
-<!--
+
+  <!--
 1. react.development.js
   1) https://ko.legacy.reactjs.org/docs/cdn-links.html
   2) React의 코어 라이브러리를 불러옵니다.
@@ -38,5 +40,42 @@
   3) ReactDOM 은 Element 와 그 자식 Element 를 이전의 Element 와 비교하고 변경된 부분만 업데이트 합니다.
 -->
 
+  <div id="root1"></div>
+  <script>
+    //  Element 만들기 (React.createElement() 메소드 이용)
+    const h1Element = React.createElement(
+      'h1',  // <h1>
+      {
+        id: 'title',  // id="title"
+        className: 'title',  // class="title"
+      },
+      '내부 내부'  // <h1 id="title" class="title">내부 내부</h1>
+    );
+
+    // rendering (Element를 화면에 표시 하기)
+    const root1 = document.getElementById('root1');
+    ReactDOM.createRoot(root1).render(h1Element);
+  </script>
+
+  <hr>
+
+  <div id="root2"></div>
+  <script>
+    const root2 = ReactDOM.createRoot(document.getElementById('root2'));
+    setInterval(() => {
+      const textElement = React.createElement(
+        'div',
+        { className: 'text', },
+        '오버워치'
+      )
+      const timeElement = React.createElement(
+        'div',
+        { className: 'time' },
+        new Date().toLocaleTimeString()
+      )
+      root2.render([ textElement, timeElement ]);  // 여러 개의 Element는 배열로 전달 해서 렌더링 한다.
+    }, 1000)
+  </script>
 </body>
+
 </html>
